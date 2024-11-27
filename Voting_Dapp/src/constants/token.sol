@@ -10,11 +10,11 @@ contract TokenMarketPlace is Ownable {
     using SafeERC20 for IERC20;
     using SafeMath for uint256;
 
-    uint256 public tokenPrice = 2e9 wei; // 0.000000002 ether per Ck token in wei
+    uint256 public tokenPrice = 2e9 wei; 
     uint256 public sellerCount = 1;
     uint256 public buyerCount = 1;
 
-    IERC20 public CkToken;
+    IERC20 public VKToken;
 
     event TokenPriceUpdated(uint256 newPrice);
     event TokenBought(address indexed buyer, uint256 amount, uint256 totalCost);
@@ -23,8 +23,8 @@ contract TokenMarketPlace is Ownable {
     event EtherWithdrawn(address indexed owner, uint256 amount);
     event CalculateTokenPrice(uint256 priceToPay);
 
-    constructor(address _CkToken) Ownable(msg.sender) {
-        CkToken = IERC20(_CkToken);
+    constructor(address _VKToken) Ownable(msg.sender) {
+        VKToken = IERC20(_VKToken);
     }
 
     // Adjust the token price based on demand
@@ -55,14 +55,14 @@ contract TokenMarketPlace is Ownable {
     }
 
     // Buy tokens from the marketplace
-    function buyCkToken(uint256 _amountOfToken) public payable {
+    function buyVKToken(uint256 _amountOfToken) public payable {
         require(_amountOfToken > 0, "Amount of tokens must be greater than 0");
 
         uint256 totalCost = calculateTokenPrice(_amountOfToken);
         require(msg.value >= totalCost, "Insufficient Ether sent");
 
         // Transfer tokens to the buyer
-        CkToken.safeTransfer(msg.sender, _amountOfToken);
+        VKToken.safeTransfer(msg.sender, _amountOfToken);
 
         // Update buyer count and adjust the token price
         buyerCount++;
@@ -77,13 +77,13 @@ contract TokenMarketPlace is Ownable {
     }
 
     // Sell tokens back to the marketplace
-    function sellCkToken(uint256 _amountOfToken) public {
+    function sellVKToken(uint256 _amountOfToken) public {
         require(_amountOfToken > 0, "Amount of tokens must be greater than 0");
 
         uint256 totalEarned = calculateTokenPrice(_amountOfToken);
 
         // Transfer tokens from the seller to the contract
-        CkToken.safeTransferFrom(msg.sender, address(this), _amountOfToken);
+        VKToken.safeTransferFrom(msg.sender, address(this), _amountOfToken);
 
         // Update seller count and adjust the token price
         sellerCount++;
@@ -98,9 +98,8 @@ contract TokenMarketPlace is Ownable {
     // Owner can withdraw excess tokens from the contract
     function withdrawTokens(uint256 _amount) public onlyOwner {
         require(_amount > 0, "Amount must be greater than 0");
-        require(CkToken.balanceOf(address(this)) >= _amount, "Insufficient tokens in contract");
-
-        CkToken.safeTransfer(owner(), _amount);
+        require(VKToken.balanceOf(address(this)) >= _amount, "Insufficient tokens in contract");
+        VKToken.safeTransfer(owner(), _amount);
         emit TokensWithdrawn(owner(), _amount);
     }
 
