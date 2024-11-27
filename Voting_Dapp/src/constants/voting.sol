@@ -46,11 +46,11 @@ contract Vote {
     uint public winnerVotes;
     address public winnerAddress;
 
-    IERC20 public CkToken;
+    IERC20 public VKToken;
 
     // Constructor
-    constructor(address _CkToken) {
-        CkToken = IERC20(_CkToken);
+    constructor(address _VKToken) {
+        VKToken = IERC20(_VKToken);
         electionComission = msg.sender;
     }
 
@@ -120,7 +120,7 @@ contract Vote {
 
     // Voting functions
     function vote(uint _voterId, uint _candidateId) external isVotingOver {
-        require (CkToken.balanceOf(msg.sender)>0, "Not allowed");
+        require (VKToken.balanceOf(msg.sender)>0, "Not allowed");
         require(voterDetails[_voterId].voterAddress == msg.sender, "You are not registered for voting");
         require(voterDetails[_voterId].voterCandidateId == 0, "You have already voted");
         require(candidateDetails[_candidateId].candidateId == _candidateId, "Candidate not found");
