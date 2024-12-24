@@ -37,26 +37,31 @@ VoteChainX is a decentralized voting platform powered by blockchain technology, 
 1. **Clone the Repository**:
    ```bash
    git clone https://github.com/your-username/VoteChainX.git
-   cd VoteChainX
    ```
 
-2. **Install Dependencies**:
-   Install the required dependencies for the frontend:
+2. **Navigate to Project Directory**:
+   ```bash
+   cd VoteChainX
+   ```
+   
+3. **Install Dependencies**:
    ```bash
    npm install
    ```
 
-3. **Deploy Smart Contracts using Remix IDE**:
+4. **Deploy Smart Contracts using Remix IDE**:
    - Open [Remix IDE](https://remix.ethereum.org/).
    - Create a new Solidity contract or upload the existing smart contract file from this repository.
    - Compile the smart contract using the Solidity compiler in Remix.
    - Deploy the contract to a test network or Ethereum mainnet using Remix's "Deploy & Run Transactions" plugin, connected to your MetaMask wallet.
 
-4. **Run the Application**:
-   To start the frontend and backend services:
+5. **Run the Application**:
    ```bash
    npm run start
    ```
 
-5. **Connect with MetaMask**:
+6. **Connect with MetaMask**:
    Ensure MetaMask is connected to your local blockchain or test network and that the account has sufficient tokens for voting.
+
+
+> Thank you for checking out my project! 
