@@ -32,36 +32,49 @@ VoteChainX is a decentralized voting platform powered by blockchain technology, 
 3. **MetaMask** or another Ethereum wallet extension for connecting to the blockchain.
 4. **Remix IDE** for deploying smart contracts.
 
-### Setup Instructions
+### Setup Instructions  
 
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/your-username/VoteChainX.git
-   ```
+1. **Clone the Repository**:  
+   ```bash  
+   git clone https://github.com/your-username/VoteChainX.git  
+   ```  
 
-2. **Navigate to Project Directory**:
-   ```bash
-   cd VoteChainX
-   ```
-   
-3. **Install Dependencies**:
-   ```bash
-   npm install
-   ```
+2. **Navigate to the Project Directory**:  
+   ```bash  
+   cd VoteChainX  
+   ```  
 
-4. **Deploy Smart Contracts using Remix IDE**:
-   - Open [Remix IDE](https://remix.ethereum.org/).
-   - Create a new Solidity contract or upload the existing smart contract file from this repository.
-   - Compile the smart contract using the Solidity compiler in Remix.
-   - Deploy the contract to a test network or Ethereum mainnet using Remix's "Deploy & Run Transactions" plugin, connected to your MetaMask wallet.
+3. **Install Dependencies for Backend and Frontend**:  
+   - Navigate to the `backend` directory and install dependencies:  
+     ```bash  
+     cd backend  
+     npm install  
+     ```  
+   - Navigate to the `Voting_Dapp` directory and install dependencies:  
+     ```bash  
+     cd ../Voting_Dapp 
+     npm install  
+     ```  
 
-5. **Run the Application**:
-   ```bash
-   npm run start
-   ```
+4. **Deploy Smart Contracts Using Remix IDE**:  
+   - Open [Remix IDE](https://remix.ethereum.org/).  
+   - Create a new Solidity contract or upload the existing smart contract file from this repository.  
+   - Compile the smart contract using the Solidity compiler in Remix.  
+   - Deploy the contract to a test network or Ethereum mainnet using Remix's "Deploy & Run Transactions" plugin, connected to your MetaMask wallet.  
 
+5. **Run the Application**:  
+   - Start the backend server:  
+     ```bash  
+     cd ../backend  
+     npm start  
+     ```  
+   - Start the frontend development server:  
+     ```bash  
+     cd ../Voting_Dapp 
+     npm run dev  
+     ```
+     
 6. **Connect with MetaMask**:
    Ensure MetaMask is connected to your local blockchain or test network and that the account has sufficient tokens for voting.
-
 
 > Thank you for checking out my project! 
