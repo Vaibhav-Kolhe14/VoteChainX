@@ -36,7 +36,7 @@ VoteChainX is a decentralized voting platform powered by blockchain technology, 
 
 1. **Clone the Repository**:  
    ```bash  
-   git clone https://github.com/your-username/VoteChainX.git  
+   git clone https://github.com/Vaibhav-Kolhe14/VoteChainX.git 
    ```  
 
 2. **Navigate to the Project Directory**:  
