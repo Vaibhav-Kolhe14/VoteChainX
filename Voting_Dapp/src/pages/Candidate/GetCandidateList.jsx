@@ -23,13 +23,14 @@ const GetCandidateList = () => {
   const { contractInstance } = web3State;
   const [candidateList, setCandidateList] = useState([]);
 
+
   useEffect(() => {
     const fetchCandidateList = async () => {
       if (!contractInstance) {
         console.log("Contract instance is not available.");
         return;
       }
-
+  
       try {
         console.log("Fetching candidate list...");
         const candidates = await contractInstance.getCandidateList();
@@ -39,23 +40,22 @@ const GetCandidateList = () => {
         console.error("Error in GetCandidateList's useEffect :: ", error);
       }
     };
-
-    if (contractInstance) {
-      fetchCandidateList(); // Initial fetch on component mount
-
-      // Set up interval to fetch candidate list every 3 seconds
-      const interval = setInterval(() => {
+  
+    fetchCandidateList(); // Fetch immediately when the component mounts
+  
+    const interval = setInterval(() => {
+      if (contractInstance) {
         console.log("Refreshing candidate list...");
         fetchCandidateList();
-      }, 3000); // 3000 ms = 3 seconds
-
-      // Cleanup the interval on component unmount
-      return () => {
-        console.log("Clearing interval...");
-        clearInterval(interval);
-      };
-    }
-  }, [contractInstance]);
+      }
+    }, 3000); // Refresh every 3 seconds
+  
+    return () => {
+      console.log("Clearing interval...");
+      clearInterval(interval);
+    };
+  }, [contractInstance, web3State]); // Added `web3State` dependency
+  
 
   return (
     <>
