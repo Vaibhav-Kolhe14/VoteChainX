@@ -1,10 +1,6 @@
 // SPDX-License-Identifier: MIT
-<<<<<<< HEAD
 pragma solidity ^0.8.26;
 
-=======
-pragma solidity ^0.8.20;
->>>>>>> 1969b55efe8627e4b8234fb18c68511e7d13bbaf
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 contract Vote {
@@ -139,13 +135,8 @@ contract Vote {
     function setVotingPeriod(uint _startTimeDuration, uint _endTimeDuration) external onlyComissioner {
         require(_startTimeDuration < _endTimeDuration, "Start time must be less than end time");
 
-<<<<<<< HEAD
         startTime = block.timestamp + _startTimeDuration;
         endTime = startTime + _endTimeDuration;
-=======
-        startTime = _startTimeDuration;
-        endTime = _endTimeDuration;
->>>>>>> 1969b55efe8627e4b8234fb18c68511e7d13bbaf
     }
 
     function StopVoting() external onlyComissioner {

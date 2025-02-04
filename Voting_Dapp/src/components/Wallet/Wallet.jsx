@@ -34,17 +34,11 @@ const HomePage = () => {
     initializeErc20Contract();
   }, [provider]);
 
-<<<<<<< HEAD
 
   // Fetch token balance when contract instance and account are available
   useEffect(() => {
     const fetchTokenBalance = async () => {
       console.log("\nprovider ::",provider,"\n erc20ContractInstance :: ",erc20ContractInstance,"\nselectedAccount ::", selectedAccount, "\nnetworkname ::",networkName)
-=======
-  // Fetch token balance when contract instance and account are available
-  useEffect(() => {
-    const fetchTokenBalance = async () => {
->>>>>>> 1969b55efe8627e4b8234fb18c68511e7d13bbaf
       if (!erc20ContractInstance || !selectedAccount) return;
 
       try {
@@ -89,11 +83,7 @@ const HomePage = () => {
           <div className="mt-6">
             <h3 className="text-xl font-semibold text-blue-400 "> Token Balance:</h3>
             <p className="mt-2 text-lg font-mono text-white">
-<<<<<<< HEAD
               {userTokenBalance !== null ? `${userTokenBalance} Vk Token` : "Loading..."}
-=======
-              {userTokenBalance !== null ? `${userTokenBalance} Ck Token` : "Loading..."}
->>>>>>> 1969b55efe8627e4b8234fb18c68511e7d13bbaf
             </p>
           </div>
         </div>

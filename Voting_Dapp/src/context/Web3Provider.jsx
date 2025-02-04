@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Web3Context } from './Web3Context'
-<<<<<<< HEAD
 import { ethers } from 'ethers';
-=======
->>>>>>> 1969b55efe8627e4b8234fb18c68511e7d13bbaf
 import { getWeb3State } from '../utils/GetWeb3State'
 import { HandleAccountChange } from '../utils/handleAccountChange'
 import { HandleChainChange } from '../utils/handleChainChange'
@@ -19,7 +16,6 @@ function Web3Provider({children}) {
         provider: null
     })
 
-<<<<<<< HEAD
 
     const handleWallet = async () => {
       try {
@@ -38,23 +34,6 @@ function Web3Provider({children}) {
         console.error('Error in Web3Provider :: ', error);
       }
     };
-=======
-    const handleWallet = async () => {
-        try {
-            const { contractInstance, selectedAccount, chainId, networkName, signer, provider } = await getWeb3State()
-            console.log(contractInstance, selectedAccount, chainId)
-
-            // Update the web3State with the fetched data
-            setWeb3State({ contractInstance, selectedAccount, chainId, networkName, signer, provider });
-
-            // Persist selectedAccount to localStorage
-            localStorage.setItem('selectedAccount', selectedAccount);
-            console.log(contractInstance, selectedAccount, chainId, networkName, signer, provider);
-        } catch (error) {
-            console.error("Error in Web3Provider :: ", error)
-        }
-    }
->>>>>>> 1969b55efe8627e4b8234fb18c68511e7d13bbaf
 
     // Function to handle wallet disconnection
   const disconnectWallet = () => {
@@ -66,7 +45,6 @@ function Web3Provider({children}) {
       signer: null,
       provider: null
     }));
-<<<<<<< HEAD
     localStorage.removeItem('web3State');
     localStorage.removeItem('selectedAccount'); // Clear from localStorage
   };
@@ -114,40 +92,12 @@ function Web3Provider({children}) {
     window.ethereum.on('accountsChanged', () => HandleAccountChange(setWeb3State));
     window.ethereum.on('chainChanged', () => HandleChainChange(setWeb3State));
   
-=======
-    localStorage.removeItem('selectedAccount'); // Clear from localStorage
-  };
-
-  useEffect(() => {
-    const initWeb3State = async () => {
-      const storedAccount = localStorage.getItem('selectedAccount');
-      if (storedAccount) {
-      // If there's a stored account, set it in the web3State
-        setWeb3State(prevState => ({
-          ...prevState,
-          selectedAccount: storedAccount
-        }));
-      }
-    };
-
-    initWeb3State();
-
-    // Listen for changes in the accounts and chains, and handle them accordingly
-    window.ethereum.on('accountsChanged', () => HandleAccountChange(setWeb3State));
-    window.ethereum.on('chainChanged', () => HandleChainChange(setWeb3State));
-
-    // Cleanup: Remove the listeners when the component unmounts
->>>>>>> 1969b55efe8627e4b8234fb18c68511e7d13bbaf
     return () => {
       window.ethereum.removeListener('accountsChanged', () => HandleAccountChange(setWeb3State));
       window.ethereum.removeListener('chainChanged', () => HandleChainChange(setWeb3State));
     };
-<<<<<<< HEAD
   }, []);
 
-=======
-  }, []); // Empty dependency array ensures this runs once on component mount
->>>>>>> 1969b55efe8627e4b8234fb18c68511e7d13bbaf
 
   return (
     <div>

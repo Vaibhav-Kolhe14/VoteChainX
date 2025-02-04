@@ -41,7 +41,6 @@ export const getWeb3State = async () => {
             case 137:
                 networkName = 'Polygon Mainnet';
                 break;
-<<<<<<< HEAD
             case 80002:
                 networkName = 'Polygon Amoy Testnet';
                 break;
@@ -51,15 +50,6 @@ export const getWeb3State = async () => {
             case 11155111:
                 networkName = 'Ethereum Sepolia Testnet';
                 break;
-=======
-            case 80001:
-                networkName = 'Polygon Mumbai Test Network';
-                break;
-             break;
-            case 17000:
-                networkName = 'Ethereum Holesky Testnet';
-                break;
->>>>>>> 1969b55efe8627e4b8234fb18c68511e7d13bbaf
             // Add more networks as needed
             default:
                 networkName = 'Unknown Network';

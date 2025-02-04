@@ -1,28 +1,16 @@
 // SPDX-License-Identifier: MIT
-<<<<<<< HEAD
 pragma solidity ^0.8.0;
-=======
-pragma solidity ^0.8.20;
->>>>>>> 1969b55efe8627e4b8234fb18c68511e7d13bbaf
 
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-<<<<<<< HEAD
 import "hardhat/console.sol";
-=======
-import "hardhat/console.sol"; // for console output during development
->>>>>>> 1969b55efe8627e4b8234fb18c68511e7d13bbaf
 
 contract TokenMarketPlace is Ownable {
     using SafeERC20 for IERC20;
     using SafeMath for uint256;
 
-<<<<<<< HEAD
     uint256 public tokenPrice = 2e16 wei; // 0.02 ether per Ck token
-=======
-    uint256 public tokenPrice = 2e9 wei; 
->>>>>>> 1969b55efe8627e4b8234fb18c68511e7d13bbaf
     uint256 public sellerCount = 1;
     uint256 public buyerCount = 1;
 
@@ -111,6 +99,7 @@ contract TokenMarketPlace is Ownable {
     function withdrawTokens(uint256 _amount) public onlyOwner {
         require(_amount > 0, "Amount must be greater than 0");
         require(VKToken.balanceOf(address(this)) >= _amount, "Insufficient tokens in contract");
+
         VKToken.safeTransfer(owner(), _amount);
         emit TokensWithdrawn(owner(), _amount);
     }
