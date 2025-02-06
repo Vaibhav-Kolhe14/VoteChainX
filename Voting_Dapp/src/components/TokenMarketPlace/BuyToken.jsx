@@ -17,18 +17,34 @@ const BuyToken = ({ contractInstance }) => {
       }
 
       const tokenValueWei = ethers.parseEther(tokenValueEth); // Ensure correct conversion
+      console.log("Token Value in ETH:", tokenValueEth);
       console.log("Token Value in Wei:", tokenValueWei.toString());
+
+       // Ensure the contract instance is available
+       if (!contractInstance) {
+        console.error("Contract instance is not available.");
+        toast.error("Contract instance is not available.");
+        return;
+      }
 
       // Ensure the contract instance has a signer
       const provider = new ethers.BrowserProvider(window.ethereum);
       const signer = await provider.getSigner(); // Get the signer
+      console.log("Signer address:", await signer.getAddress());
       const contractWithSigner = contractInstance.connect(signer); // Connect the contract to the signer
+      console.log("Contract with signer initialized:", contractWithSigner);
+
+      // Log contract address and ABI
+      console.log("Contract Address:", contractInstance.target);
+      console.log("Contract ABI:", contractInstance.interface.format());
 
       // Prepare transaction options
+      console.log("Sending transaction to buy tokens...");
       const tx = await contractWithSigner.buyVKToken(tokenValueWei, {
         value: tokenValueWei, // Set the Ether value sent with the transaction
         gasLimit: 500000, // Try increasing gas limit if needed
       });
+      console.log("Transaction sent. Waiting for confirmation...");
       
       // Wait for the transaction to be mined
       const receipt = await tx.wait();

@@ -24,6 +24,7 @@ const TokenMarketplace = () => {
         setErc20ContractInstance(erc20ContractInstance);
       } catch (error) {
         toast.error("Error initializing ERC20 contract.");
+        console.error("ERC20 Contract Initialization Error:", error);
       }
     };
     if(provider) erc20TokenInit();
@@ -38,10 +39,13 @@ const TokenMarketplace = () => {
         setTokenMarketplaceInstance(tokenMarketplaceInstance);
       } catch (error) {
         toast.error("Error initializing Token Marketplace.");
-        console.error(error);
+        console.error("Token Marketplace Initialization Error:", error);
       }
     };
-    if(signer) tokenMarketplaceInit();
+    if (signer) {
+      console.log("Signer available. Initializing Token Marketplace contract...");
+      tokenMarketplaceInit();
+    }
   }, [signer]);
 
   return (
