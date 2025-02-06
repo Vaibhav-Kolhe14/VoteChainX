@@ -143,7 +143,8 @@ contract Vote {
         stopVoting = true;
     }
 
-    function getVotingStatus() external view returns (VotingStatus) {
+/////////////--------------stopVoting check should be added---------------/////////////////////
+    function getVotingStatus() external view returns (VotingStatus) {  
         if (startTime == 0) {
             return VotingStatus.NotStarted;
         } else if (block.timestamp >= startTime && block.timestamp <= endTime) {
@@ -152,6 +153,27 @@ contract Vote {
             return VotingStatus.Ended;
         }
     }
+
+//     function getVotingStatus() external view returns (VotingStatus) {  
+//     // If voting has been manually stopped, return "Ended"
+//     if (stopVoting) {
+//         return VotingStatus.Ended;
+//     }
+
+//     // If the voting has not started yet, return "Not Started"
+//     if (startTime == 0) {
+//         return VotingStatus.NotStarted;
+//     } 
+
+//     // If the current time is within the voting period, return "In Progress"
+//     if (block.timestamp >= startTime && block.timestamp <= endTime) {
+//         return VotingStatus.InProgress;
+//     }
+
+//     // If voting period has passed, return "Ended"
+//     return VotingStatus.Ended;
+// }
+
 
     function announceVotingResult() external onlyComissioner {
         uint maxVotes = 0;
